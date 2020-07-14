@@ -7,5 +7,7 @@
 
 import Foundation
 import S3
+import DynamoDB
 
 typealias s3Sdk = S3
+typealias dynamo = DynamoDB

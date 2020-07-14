@@ -15,4 +15,8 @@
  tar \
  zip \
  libssl-dev \
- zlib1g-dev
+ zlib1g-dev \
+ gd \
+ gd-devel \
+ php-devel \
+ fpc-src

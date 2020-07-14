@@ -13,7 +13,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/swift-server/swift-aws-lambda-runtime.git", .upToNextMajor(from:"0.2.0")),
-    .package(name: "AWSSDKSwift", url: "https://github.com/swift-aws/aws-sdk-swift.git", from: "4.0.0")
+    .package(name: "AWSSDKSwift", url: "https://github.com/swift-aws/aws-sdk-swift.git", from: "4.0.0"),
   ],
   targets: [
     .target(
@@ -22,6 +22,8 @@ let package = Package(
         .product(name: "AWSLambdaRuntime", package: "swift-aws-lambda-runtime"),
         .product(name: "AWSLambdaEvents", package: "swift-aws-lambda-runtime"),
         .product(name: "S3", package: "AWSSDKSwift"),
+        .product(name: "Rekognition", package: "AWSSDKSwift"),
+        .product(name: "DynamoDB", package: "AWSSDKSwift")
       ]
     ),
   ]
