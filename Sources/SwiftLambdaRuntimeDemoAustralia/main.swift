@@ -21,6 +21,7 @@ Lambda.run { (context, messages: DynamoDB.Event, callback: @escaping (Result<Out
     logger.info("Records: \(messages.records)")
     guard let bucket = bucket, let tableName = tableName else {
         callback(.failure(LambdaError.bucketNameOrTableNameEmpty))
+        return
     }
     for message in messages.records {
         
@@ -54,7 +55,7 @@ Lambda.run { (context, messages: DynamoDB.Event, callback: @escaping (Result<Out
         }.flatMap { response -> EventLoopFuture<dynamo.PutItemOutput> in
             var containsWaterfalls = false
             if let labels = response.labels {
-                for label in labels where label.name == "Photography" {
+                for label in labels where label.name?.lowercased() == "waterfall" {
                     logger.info("Label: \(label.name!)")
                     containsWaterfalls.toggle()
                 }
@@ -117,6 +118,5 @@ func getEnvVariable(name: String) -> String? {
     }
     return nil
 }
-
 
 
