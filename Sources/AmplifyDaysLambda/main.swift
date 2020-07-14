@@ -35,7 +35,7 @@ Lambda.run { (context, messages: DynamoDB.Event, callback: @escaping (Result<Out
         }
         
         //call to s3 to get the object by key
-        let getObjectRequest = s3Sdk.GetObjectRequest(bucket: bucket, key: key)
+        let getObjectRequest = s3Sdk.GetObjectRequest(bucket: bucket, key: "public/" + key)
         
         s3.getObject(getObjectRequest)
             .flatMap { response -> EventLoopFuture<Rekognition.DetectLabelsResponse> in
@@ -60,6 +60,9 @@ Lambda.run { (context, messages: DynamoDB.Event, callback: @escaping (Result<Out
                     containsWaterfalls.toggle()
                 }
             }
+            
+            logger.info("this image contains a waterfall: \(containsWaterfalls)")
+            
             event["isFeatured"] = .boolean(containsWaterfalls)
             let newEvent = event.mapValues { (eventValue) -> dynamo.AttributeValue in
                 switch eventValue {

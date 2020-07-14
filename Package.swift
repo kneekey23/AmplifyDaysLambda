@@ -4,12 +4,12 @@
 import PackageDescription
    
 let package = Package(
-  name: "SwiftLambdaRuntimeDemoAustralia",
+  name: "AmplifyDaysLambda",
   platforms: [
       .macOS(.v10_13),
   ],
   products: [
-    .executable(name: "SwiftLambdaRuntimeDemoAustralia", targets: ["SwiftLambdaRuntimeDemoAustralia"]),
+    .executable(name: "AmplifyDaysLambda", targets: ["AmplifyDaysLambda"]),
   ],
   dependencies: [
     .package(url: "https://github.com/swift-server/swift-aws-lambda-runtime.git", .upToNextMajor(from:"0.2.0")),
@@ -17,7 +17,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "SwiftLambdaRuntimeDemoAustralia",
+      name: "AmplifyDaysLambda",
       dependencies: [
         .product(name: "AWSLambdaRuntime", package: "swift-aws-lambda-runtime"),
         .product(name: "AWSLambdaEvents", package: "swift-aws-lambda-runtime"),
