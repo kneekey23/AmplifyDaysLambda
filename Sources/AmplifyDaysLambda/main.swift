@@ -25,7 +25,7 @@ Lambda.run { (context, messages: DynamoDB.Event, callback: @escaping (Result<Out
     }
     for message in messages.records {
         
-        guard var event = message.change.newImage else {
+        guard var event = message.change.newImage ?? message.change.oldImage else {
             callback(.failure(LambdaError.newDynamoEventEmpty))
             return
         }
